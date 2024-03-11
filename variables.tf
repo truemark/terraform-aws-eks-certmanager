@@ -9,3 +9,15 @@ variable "create_namespace" {
   type        = bool
   default     = true
 }
+
+variable "enable_recursive_nameservers" {
+  description = "The recursive nameservers to use for DNS01 challenge."
+  type        = bool
+  default     = false
+}
+
+variable "recursive_nameservers" {
+  description = "The recursive nameservers to use for DNS01 challenge."
+  type        = string
+  default     = "8.8.8.8:53\\,1.1.1.1:53"
+}
