@@ -27,5 +27,21 @@ resource "helm_release" "cert_manager" {
     value = true
   }
 
+  dynamic "set" {
+    for_each = var.enable_recursive_nameservers == true ? [1] : []
+    content {
+      name  = "dns01-recursive-nameservers-only"
+      value = var.enable_recursive_nameservers
+    }
+  }
+
+  dynamic "set" {
+    for_each = var.enable_recursive_nameservers == true ? [1] : []
+    content {
+      name  = "dns01-recursive-nameservers"
+      value = var.recursive_nameservers
+    }
+  }
+
   timeout = 600
 }
